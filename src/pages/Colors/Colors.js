@@ -3,38 +3,20 @@ import { connect } from "react-redux";
 
 import {
   Container,
-  ColorComponent,
+  ColorContainer,
   ContainerOption,
   ContainerChoices
 } from "./Colors-styled";
 import { Transition, animated } from "react-spring/renderprops";
 import { defineColor } from "../../actions";
 
-function ColorComponent1(props) {
+function ColorComponent(props) {
   return (
-    <ColorComponent bgColor={props.color.hexadecimal}>
+    <ColorContainer bgColor={props.color.hexadecimal}>
       Im number 1
-    </ColorComponent>
+    </ColorContainer>
   );
 }
-
-function ColorComponent2(props) {
-  return (
-    <ColorComponent bgColor={props.color.hexadecimal}>
-      Im number 2
-    </ColorComponent>
-  );
-}
-
-function ColorComponent3(props) {
-  return (
-    <ColorComponent bgColor={props.color.hexadecimal}>
-      Im number 3
-    </ColorComponent>
-  );
-}
-
-const colorComponents = [ColorComponent1, ColorComponent2, ColorComponent3];
 
 class Colors extends React.Component {
   state = {
@@ -66,7 +48,7 @@ class Colors extends React.Component {
           >
             {index => style => (
               <animated.div style={{ ...style }}>
-                {React.createElement(colorComponents[index], { color })}
+                {React.createElement(ColorComponent, { color })}
               </animated.div>
             )}
           </Transition>

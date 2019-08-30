@@ -13,7 +13,7 @@ export const Container = styled.div`
   }
 `;
 
-export const ColorComponent = styled("div")`
+export const ColorContainer = styled("div")`
   width: 100%;
   height: 100%;
   display: flex;
