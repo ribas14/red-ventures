@@ -14,10 +14,13 @@ import Finished from "./pages/Finished/Finished";
 import { fetchJson } from "./actions";
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.fetchJson();
+  }
+
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.props.jsonObj);
-    if (prevProps.loading !== this.props.loading) {
-      console.log(this.props.carJsonDefault);
+    if (prevProps.jsonObj !== this.props.jsonObj) {
+      console.log(this.props.jsonObj);
     }
   }
 
