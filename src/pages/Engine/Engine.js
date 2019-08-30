@@ -1,6 +1,14 @@
 import React from "react";
-import { Container, TestScreen } from "./Engine-styled";
+import { connect } from "react-redux";
+
+import {
+  Container,
+  TestScreen,
+  ContainerOption,
+  ContainerChoices
+} from "./Engine-styled";
 import { Transition, animated } from "react-spring/renderprops";
+import { fetchJson } from "../../actions";
 
 function TestScreen1(props) {
   return <TestScreen bgColor="tomato">Im number 1</TestScreen>;
@@ -16,21 +24,27 @@ function TestScreen3(props) {
 
 const testScreens = [TestScreen1, TestScreen2, TestScreen3];
 
-export default class Engine extends React.Component {
+class Engine extends React.Component {
   state = {
     index: 0
   };
 
-  toggle = e =>
-    this.setState(state => ({
-      index: state.index === 2 ? 0 : state.index + 1
-    }));
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.engine !== this.props.engine) {
+    }
+  }
+
+  toggle = id =>
+    this.setState({
+      index: id - 1
+    });
   render() {
     const { index } = this.state;
+    const { engines } = this.props;
     return (
       <div>
         <h1>React Spring Transition Tutorial</h1>
-        <Container onClick={this.toggle}>
+        <Container>
           <Transition
             native
             reset
@@ -47,8 +61,31 @@ export default class Engine extends React.Component {
             )}
           </Transition>
         </Container>
+        <ContainerChoices>
+          {engines &&
+            engines.items.map(engine => {
+              return (
+                <ContainerOption onClick={() => this.toggle(engine.id)}>
+                  {engine.kwh}
+                </ContainerOption>
+              );
+            })}
+        </ContainerChoices>
         <h3>Hit The clap if you enjoyed!</h3>
       </div>
     );
   }
 }
+
+const mapStateToProps = store => ({
+  engines: store.jsonObj.carJsonDefault.engine
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchJson: () => dispatch(fetchJson())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Engine);

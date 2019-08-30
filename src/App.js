@@ -11,6 +11,7 @@ import Engine from "./pages/Engine/Engine";
 import Colors from "./pages/Colors/Colors";
 import Wheels from "./pages/Wheels/Wheels";
 import Finished from "./pages/Finished/Finished";
+import Loading from "./components/Loading/Loading";
 import { fetchJson } from "./actions";
 
 class App extends React.Component {
@@ -18,30 +19,29 @@ class App extends React.Component {
     this.props.fetchJson();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.jsonObj !== this.props.jsonObj) {
-      console.log(this.props.jsonObj);
-    }
-  }
-
   render() {
+    const { loading } = this.props.loading;
     return (
       <div className="App">
         <Header />
         <Router>
-          <AnimatedSwitch
-            atEnter={{ opacity: 0 }}
-            atLeave={{ opacity: 0 }}
-            atActive={{ opacity: 1 }}
-            className="switch-wrapper"
-          >
-            <Route exact path="/" component={Home} />
-            <Route path="/engine/" component={Engine} />
-            <Route path="/color/" component={Colors} />
-            <Route path="/wheels/" component={Wheels} />
-            <Route path="/finished/" component={Finished} />
-          </AnimatedSwitch>
-        </Router>{" "}
+          {loading ? (
+            <Loading />
+          ) : (
+            <AnimatedSwitch
+              atEnter={{ opacity: 0 }}
+              atLeave={{ opacity: 0 }}
+              atActive={{ opacity: 1 }}
+              className="switch-wrapper"
+            >
+              <Route exact path="/" component={Home} />
+              <Route path="/engine/" component={Engine} />
+              <Route path="/color/" component={Colors} />
+              <Route path="/wheels/" component={Wheels} />
+              <Route path="/finished/" component={Finished} />
+            </AnimatedSwitch>
+          )}
+        </Router>
         <Footer />
       </div>
     );
@@ -49,7 +49,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = store => ({
-  jsonObj: store.jsonObj.carJsonDefault,
   loading: store.jsonObj.loading
 });
 
