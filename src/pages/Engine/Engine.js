@@ -9,6 +9,7 @@ import {
 } from "./Engine-styled";
 import { Transition, animated } from "react-spring/renderprops";
 import { defineEngine } from "../../actions";
+import { Link } from "react-router-dom";
 
 function EngineComponent1(props) {
   return <EngineComponent bgColor="tomato">Im number 1</EngineComponent>;
@@ -72,7 +73,7 @@ class Engine extends React.Component {
               );
             })}
         </ContainerChoices>
-        <h3>Hit The clap if you enjoyed!</h3>
+        <Link to="/Color">NEXT</Link>
       </div>
     );
   }

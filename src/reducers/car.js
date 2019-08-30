@@ -15,17 +15,17 @@ const car = (state = initialState, action) => {
     case "DEFINE_COLOR":
       return {
         ...state,
-        color: action.color
+        color: action.payload
       };
     case "DEFINE_WHEELS":
       return {
         ...state,
-        wheel: action.wheel
+        wheel: action.payload
       };
     case "DEFINE_PRICE":
       return {
         ...state,
-        price: action.price
+        price: action.payload
       };
     default:
       return state;

@@ -13,11 +13,27 @@ export const Container = styled.div`
   }
 `;
 
-export const TestScreen = styled("div")`
+export const ColorComponent = styled("div")`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${props => props.bgColor};
+`;
+
+export const ContainerOption = styled("div")`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ContainerChoices = styled("div")`
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
