@@ -3,60 +3,58 @@ import { connect } from "react-redux";
 
 import {
   Container,
-  TestScreen,
+  EngineComponent,
   ContainerOption,
   ContainerChoices
 } from "./Engine-styled";
 import { Transition, animated } from "react-spring/renderprops";
-import { fetchJson } from "../../actions";
+import { defineEngine } from "../../actions";
 
-function TestScreen1(props) {
-  return <TestScreen bgColor="tomato">Im number 1</TestScreen>;
+function EngineComponent1(props) {
+  return <EngineComponent bgColor="tomato">Im number 1</EngineComponent>;
 }
 
-function TestScreen2(props) {
-  return <TestScreen bgColor="aqua">Im number 2</TestScreen>;
+function EngineComponent2(props) {
+  return <EngineComponent bgColor="aqua">Im number 2</EngineComponent>;
 }
 
-function TestScreen3(props) {
-  return <TestScreen bgColor="navy">Im number 3</TestScreen>;
+function EngineComponent3(props) {
+  return <EngineComponent bgColor="navy">Im number 3</EngineComponent>;
 }
 
-const testScreens = [TestScreen1, TestScreen2, TestScreen3];
+const engineComponents = [EngineComponent1, EngineComponent2, EngineComponent3];
 
 class Engine extends React.Component {
   state = {
     index: 0
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.engine !== this.props.engine) {
-    }
-  }
-
-  toggle = id =>
+  toggle = engine => {
     this.setState({
-      index: id - 1
+      index: engine.id - 1
     });
+    this.props.defineEngine(engine);
+  };
+
   render() {
     const { index } = this.state;
-    const { engines } = this.props;
+    const { engines, engine } = this.props;
+    console.log(engine);
     return (
       <div>
-        <h1>React Spring Transition Tutorial</h1>
         <Container>
           <Transition
             native
             reset
             unique
             items={index}
-            from={{ opacity: 0, transform: "translate3d(100%, 0 ,0)" }}
+            from={{ opacity: 0, transform: "translate3d(50%, 0 ,0)" }}
             enter={{ opacity: 1, transform: "translate3d(0%, 0, 0)" }}
             leave={{ opacity: 0, transform: "translate3d(-50%, 0, 0)" }}
           >
             {index => style => (
               <animated.div style={{ ...style }}>
-                {React.createElement(testScreens[index])}
+                {React.createElement(engineComponents[index])}
               </animated.div>
             )}
           </Transition>
@@ -65,7 +63,10 @@ class Engine extends React.Component {
           {engines &&
             engines.items.map(engine => {
               return (
-                <ContainerOption onClick={() => this.toggle(engine.id)}>
+                <ContainerOption
+                  key={engine.id}
+                  onClick={() => this.toggle(engine)}
+                >
                   {engine.kwh}
                 </ContainerOption>
               );
@@ -78,11 +79,12 @@ class Engine extends React.Component {
 }
 
 const mapStateToProps = store => ({
-  engines: store.jsonObj.carJsonDefault.engine
+  engines: store.jsonObj.carJsonDefault.engine,
+  engine: store.car.engine
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchJson: () => dispatch(fetchJson())
+  defineEngine: engine => dispatch(defineEngine(engine))
 });
 
 export default connect(

@@ -1,32 +1,32 @@
 const initialState = {
-  wheel: "",
-  color: "",
-  engine: ""
+  wheel: {},
+  color: {},
+  engine: {},
+  price: 0
 };
 
 const car = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_TIRE":
-      return [
+    case "DEFINE_ENGINE":
+      return {
         ...state,
-        {
-          wheel: action.wheel
-        }
-      ];
-    case "ADD_COLOR":
-      return [
+        engine: action.payload
+      };
+    case "DEFINE_COLOR":
+      return {
         ...state,
-        {
-          wheel: action.color
-        }
-      ];
-    case "ADD_MOTOR":
-      return [
+        color: action.color
+      };
+    case "DEFINE_WHEELS":
+      return {
         ...state,
-        {
-          wheel: action.engine
-        }
-      ];
+        wheel: action.wheel
+      };
+    case "DEFINE_PRICE":
+      return {
+        ...state,
+        price: action.price
+      };
     default:
       return state;
   }

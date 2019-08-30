@@ -13,7 +13,7 @@ export const Container = styled.div`
   }
 `;
 
-export const TestScreen = styled("div")`
+export const EngineComponent = styled("div")`
   width: 100%;
   height: 100%;
   display: flex;
