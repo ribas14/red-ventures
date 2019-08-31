@@ -3,27 +3,54 @@ import { connect } from "react-redux";
 
 import {
   Container,
-  EngineComponent,
+  Title,
+  EngineContainer,
   ContainerOption,
-  ContainerChoices
+  ImgOption,
+  ContainerChoices,
+  ContainerFooter,
+  ContainerComponent,
+  ContainerLink,
+  Img,
+  ContainerTitle,
+  Red,
+  Negrito,
+  Description,
+  Ball,
+  ContainerPrice,
+  Price,
+  TitlePrice
 } from "./Engine-styled";
+import ReactSVG from "react-svg";
+import Arrow from "../../assets/svg/arrow.svg";
 import { Transition, animated } from "react-spring/renderprops";
 import { defineEngine } from "../../actions";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
-function EngineComponent1(props) {
-  return <EngineComponent bgColor="tomato">Im number 1</EngineComponent>;
+import Color1 from "../../assets/png/1.png";
+import Color2 from "../../assets/png/2.png";
+import Color3 from "../../assets/png/3.png";
+
+function EngineComponent(props) {
+  return (
+    <EngineContainer>
+      {props.engine && (
+        <React.Fragment>
+          <Img
+            bgImg={
+              props.engine.id === 1
+                ? Color1
+                : props.engine.id === 2
+                ? Color2
+                : Color3
+            }
+          />
+        </React.Fragment>
+      )}
+    </EngineContainer>
+  );
 }
-
-function EngineComponent2(props) {
-  return <EngineComponent bgColor="aqua">Im number 2</EngineComponent>;
-}
-
-function EngineComponent3(props) {
-  return <EngineComponent bgColor="navy">Im number 3</EngineComponent>;
-}
-
-const engineComponents = [EngineComponent1, EngineComponent2, EngineComponent3];
 
 class Engine extends React.Component {
   state = {
@@ -39,11 +66,14 @@ class Engine extends React.Component {
 
   render() {
     const { index } = this.state;
-    const { engines, engine } = this.props;
-    console.log(engine);
+    const { engines, engine, price } = this.props;
+    console.log(engines);
     return (
-      <div>
+      <ContainerComponent>
+        <Header />
         <Container>
+          <Title>Engine</Title>
+
           <Transition
             native
             reset
@@ -55,33 +85,55 @@ class Engine extends React.Component {
           >
             {index => style => (
               <animated.div style={{ ...style }}>
-                {React.createElement(engineComponents[index])}
+                {React.createElement(EngineComponent, { engine })}
               </animated.div>
             )}
           </Transition>
         </Container>
         <ContainerChoices>
           {engines &&
-            engines.items.map(engine => {
+            engines.items.map((item, index) => {
               return (
                 <ContainerOption
-                  key={engine.id}
-                  onClick={() => this.toggle(engine)}
+                  selected={item.id === engine.id}
+                  key={item.id}
+                  onClick={() => this.toggle(item)}
                 >
-                  {engine.kwh}
+                  <div>
+                    {item.kwh} <Red selected={item.id === engine.id}> P </Red>
+                  </div>
+                  <div>{item.kwh} kWh</div>
+                  <div>{item.range} miles range</div>
+                  <div>
+                    <Ball selected={item.id === engine.id} />{" "}
+                  </div>
                 </ContainerOption>
               );
             })}
         </ContainerChoices>
-        <Link to="/Color">NEXT</Link>
-      </div>
+        <ContainerFooter>
+          <ContainerPrice>
+            <TitlePrice>Total</TitlePrice>
+            <Price>${price + engine.price}</Price>
+          </ContainerPrice>
+          <Link to="/Color">
+            <ContainerLink>
+              <div>next</div>
+              <ReactSVG src={Arrow} />
+            </ContainerLink>
+          </Link>
+        </ContainerFooter>
+      </ContainerComponent>
     );
   }
 }
 
 const mapStateToProps = store => ({
   engines: store.jsonObj.carJsonDefault.engine,
-  engine: store.car.engine
+  price: store.car.price,
+  priceEngine: store.car.priceEngine,
+  engine: store.car.engine,
+  enginePrice: store.car.engine.price
 });
 
 const mapDispatchToProps = dispatch => ({

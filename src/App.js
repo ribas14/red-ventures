@@ -4,7 +4,6 @@ import { AnimatedSwitch } from "react-router-transition";
 import { connect } from "react-redux";
 
 import "./App.css";
-import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import Engine from "./pages/Engine/Engine";
@@ -23,7 +22,6 @@ class App extends React.Component {
     const { loading } = this.props.loading;
     return (
       <div className="App">
-        <Header />
         <Router>
           {loading ? (
             <Loading />

@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const fetchJson = () => async dispatch => {
   axios.get(process.env.REACT_APP_API_BASE).then(response => {
+    console.log(response.data.data);
     dispatch({
       type: "STORE_INFO_JSON",
       response: response.data.data
@@ -18,6 +19,10 @@ export const fetchJson = () => async dispatch => {
       type: "DEFINE_WHEELS",
       payload: response.data.data.wheels.items[0]
     });
+    dispatch({
+      type: "DEFINE_PRICE",
+      payload: response.data.data.price
+    });
   });
 };
 
@@ -25,6 +30,14 @@ export const defineEngine = engine => dispatch => {
   dispatch({
     type: "DEFINE_ENGINE",
     payload: engine
+  });
+};
+
+export const definePrice = price => dispatch => {
+  console.log(price);
+  dispatch({
+    type: "DEFINE_PRICE",
+    payload: price
   });
 };
 
