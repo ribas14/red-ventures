@@ -6,14 +6,14 @@ Eu poderia ter separado bem mais coisas em componentes, criado um stylesheet glo
 
 Poderia ter criado a transição sem algum plugin caso tivesse mais tempo livre.
 
-git clone
+>git clone
 
-cd red-ventures
+>cd red-ventures
 
-npm install
+>npm install
 
-npm start
+>npm start
 
-https://localhost:3000
+http://localhost:3000/
 
 \*Somente para mobile, teste no celular ou abra a inspenção no browser e coloque para apresentar em mobile.
