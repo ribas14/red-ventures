@@ -67,7 +67,6 @@ class Engine extends React.Component {
   render() {
     const { index } = this.state;
     const { engines, engine, price } = this.props;
-    console.log(engines);
     return (
       <ContainerComponent>
         <Header />

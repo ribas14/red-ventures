@@ -27,6 +27,13 @@ const car = (state = initialState, action) => {
         ...state,
         price: action.payload
       };
+    case "REBOOT_CAR":
+      return {
+        wheel: {},
+        color: {},
+        engine: {},
+        price: 0
+      };
     default:
       return state;
   }

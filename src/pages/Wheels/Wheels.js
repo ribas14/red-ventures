@@ -21,7 +21,6 @@ import Carousel from "re-carousel";
 
 import ReactSVG from "react-svg";
 import Arrow from "../../assets/svg/arrow.svg";
-import ArrowBackwads from "../../assets/svg/arrowback.svg";
 import { defineWheels } from "../../actions";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
@@ -120,7 +119,7 @@ class Wheel extends React.Component {
             <TitlePrice>Total</TitlePrice>
             <Price>${price + wheel.price + enginePrice + colorPrice}</Price>
           </ContainerPrice>
-          <Link to="/Color">
+          <Link to="/Finished">
             <ContainerLink>
               <div>next</div>
               <ReactSVG src={Arrow} />

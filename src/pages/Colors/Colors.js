@@ -13,11 +13,8 @@ import {
   ContainerLink,
   Img,
   ContainerTitle,
-  Red,
-  Negrito,
   ContainerLabel,
   Description,
-  Ball,
   ContainerPrice,
   Price,
   TitlePrice
@@ -77,7 +74,6 @@ class Color extends React.Component {
   render() {
     const { index } = this.state;
     const { colors, color, price, enginePrice } = this.props;
-    console.log(colors);
     return (
       <ContainerComponent>
         <Header />

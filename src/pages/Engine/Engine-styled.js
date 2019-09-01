@@ -97,7 +97,6 @@ export const ContainerOption = styled("div")`
   justify-content: space-between;
   align-items: center;
   margin: 5px 0;
-  color: ${props => (props.selected ? "auto" : "grey")};
 
   & > div {
     display: flex;
