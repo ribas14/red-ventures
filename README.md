@@ -6,6 +6,8 @@ Eu poderia ter separado bem mais coisas em componentes, criado um stylesheet glo
 
 Poderia ter criado a transição sem algum plugin caso tivesse mais tempo livre.
 
+Instalação:
+
 >git clone
 
 >cd red-ventures
