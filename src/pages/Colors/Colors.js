@@ -125,7 +125,7 @@ class Color extends React.Component {
             <TitlePrice>Total</TitlePrice>
             <Price>${price + color.price + enginePrice}</Price>
           </ContainerPrice>
-          <Link to="/Color">
+          <Link to="/Wheels">
             <ContainerLink>
               <div>next</div>
               <ReactSVG src={Arrow} />

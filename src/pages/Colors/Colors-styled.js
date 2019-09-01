@@ -36,6 +36,7 @@ export const Negrito = styled("div")`
   font-weight: 800;
   margin-right: 5px;
 `;
+
 export const Ball = styled("div")`
   padding: 10px;
   border-radius: 50px;
@@ -64,6 +65,16 @@ export const Price = styled("div")`
   font-size: 30px;
   letter-spacing: 4px;
 `;
+export const ContainerLabel = styled("div")`
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  bottom: -45px;
+
+  h3 {
+    margin: 0 !important;
+  }
+`;
 
 export const Title = styled("h3")`
   font-size: 20px;
@@ -78,17 +89,6 @@ export const Description = styled("div")`
 `;
 
 export const ContainerTitle = styled("div")``;
-
-export const ContainerLabel = styled("div")`
-  text-align: center;
-  margin: 0;
-  position: absolute;
-  bottom: -45px;
-
-  h3 {
-    margin: 0 !important;
-  }
-`;
 
 export const ContainerFooter = styled("div")`
   position: absolute;

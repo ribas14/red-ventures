@@ -43,6 +43,13 @@ export const Ball = styled("div")`
 `;
 export const ContainerPrice = styled("div")``;
 
+export const ContainerOption = styled("div")`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const ContainerLink = styled("div")`
   display: flex;
   font-size: 29px;
@@ -71,14 +78,6 @@ export const Title = styled("h3")`
   letter-spacing: 2px;
 `;
 
-export const Description = styled("div")`
-  font-size: 15px;
-  color: #ccc;
-  font-weight: 400;
-`;
-
-export const ContainerTitle = styled("div")``;
-
 export const ContainerLabel = styled("div")`
   text-align: center;
   margin: 0;
@@ -104,56 +103,54 @@ export const ContainerFooter = styled("div")`
   }
 `;
 
-export const ContainerOption = styled("div")`
-  width: 100%;
-  height: 100%;
-  padding: 0 10px;
-
-  white-space: nowrap;
-  display: flex;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5px 0;
-  color: ${props => (props.selected ? "auto" : "grey")};
-
-  & > div {
-    display: flex;
-    flex-direction: row;
-  }
-`;
-
 export const Img = styled.div`
   background-image: url(${props => props.bgImg});
-  margin-top: 150px;
-
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   z-index: 1;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
 `;
-export const ImgOption = styled.div`
-  background-image: url(${props => props.bgImg});
 
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 1;
-  border-radius: 50px;
-  border: ${props => (props.selected ? "6px solid #3b4a77" : "none")};
-  width: 35px;
-  height: 35px;
+export const ContainerArrow = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  svg {
+    transform: ${props => (props.rotate ? "rotate(180deg)" : "none")};
+    margin-right: ${props => (props.rotate ? "10px" : "none")};
+  }
 `;
 
 export const ContainerChoices = styled("div")`
   width: 100%;
 
   height: 200px;
-  flex-direction: row;
+  flex-direction: column;
   z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const ContainerCarrossel = styled("div")`
+  position: absolute;
+  top: 50px;
+`;
+
+export const CointanerLabel = styled("div")`
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  margin: auto;
+  width: 200px;
+`;
+
+export const Rotate = styled("span")`
+  transform: rotate(180deg);
+  margin-bottom: 15px;
+  margin-right: 5px;
 `;

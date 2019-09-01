@@ -34,7 +34,6 @@ export const defineEngine = engine => dispatch => {
 };
 
 export const definePrice = price => dispatch => {
-  console.log(price);
   dispatch({
     type: "DEFINE_PRICE",
     payload: price
